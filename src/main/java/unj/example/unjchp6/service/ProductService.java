@@ -1,6 +1,8 @@
 package unj.example.unjchp6.service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.function.Supplier;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,5 +22,18 @@ public class ProductService {
 	
 	public Product create(Product product) {
 		return productRepository.save(product);
+	}
+	
+	public Product findById(Integer productId) {		
+		Supplier<NoSuchElementException> s = () -> new NoSuchElementException("Product with id:"+productId+" not found");
+		return productRepository.findById(productId).orElseThrow(s);
+	}
+	
+	public Product update(Product product) {
+		return productRepository.save(product);
+	}
+
+	public void delete(Product product) {
+		productRepository.deleteById(product.getId());
 	}
 }
