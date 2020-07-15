@@ -19,11 +19,7 @@ pipeline {
         }      
         stage('Integration Tests') {
             steps {
-                script{
-	                docker.image('maven:3-alpine') { c ->
-	     				 sh 'mvn clean verify'
-	    			}                 
-                }              
+       	         docker.image('maven:3-alpine') {sh 'mvn clean verify'}              
             }       
         }
     }
