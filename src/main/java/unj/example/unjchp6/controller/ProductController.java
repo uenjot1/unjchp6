@@ -15,7 +15,7 @@ import unj.example.unjchp6.model.Product;
 import unj.example.unjchp6.service.ProductService;
 
 @RestController
-@RequestMapping(value="v1/product")
+@RequestMapping(value="v1/products")
 public class ProductController {
 
 	@Autowired
@@ -27,20 +27,16 @@ public class ProductController {
         return ResponseEntity.ok(productService.findById(productId));
     }
 
-    @RequestMapping(value="/{productId}",method = RequestMethod.PUT)
-    public void updateProduct( @PathVariable("productId") String id, @RequestBody Product product) {
-    	productService.update(product);
-    }
-
     @PostMapping
-    public ResponseEntity<Product>  saveProduct(@RequestBody Product product) {
-    	return ResponseEntity.ok(productService.create(product));
+    @ResponseStatus(HttpStatus.CREATED)
+    public Product createProduct(@RequestBody Product product) {
+    	return productService.create(product);
     }
 
-    @RequestMapping(value="/{productId}",method = RequestMethod.DELETE)
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteProduct( @PathVariable("id") String id,  @RequestBody Product product) {
-    	productService.delete(product);
-    }
+	@RequestMapping(value = "/{productId}", method = RequestMethod.DELETE)
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void deleteProduct(@PathVariable("productId") Integer productId) {
+		productService.delete(productId);
+	}
 
 }

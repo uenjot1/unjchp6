@@ -25,9 +25,11 @@ public class Unjchp6Application {
 	CommandLineRunner initDatabase(ProductRepository productRepo, UserRepository uRepo,AuthorityRepository aRepo) {
 		return args -> {
 			productRepo.save(Product.of(1, "Chockolate", 10.5, Currency.EUR));
-			User user = uRepo.saveAndFlush(User.of(1,"unj", "$2a$10$xn3LI/AjqicFYZFruSwve.681477XaVNaUQbr1gioaWPn4t1KsnmG", EncryptionAlgorithm.BCRYPT,null));
+			User user = uRepo.saveAndFlush(User.of(1,"user", "$2a$10$xn3LI/AjqicFYZFruSwve.681477XaVNaUQbr1gioaWPn4t1KsnmG", EncryptionAlgorithm.BCRYPT,null));
 			aRepo.save(Authority.of(1,"READ", user));
 			aRepo.save(Authority.of(2,"WRITE", user));
+			User reader = uRepo.saveAndFlush(User.of(1,"reader", "$2a$10$xn3LI/AjqicFYZFruSwve.681477XaVNaUQbr1gioaWPn4t1KsnmG", EncryptionAlgorithm.BCRYPT,null));
+			aRepo.save(Authority.of(1,"READ", reader));
 		};
 	}
 
