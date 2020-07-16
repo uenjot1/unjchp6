@@ -16,11 +16,12 @@ pipeline {
                     junit 'target/surefire-reports/*.xml' 
                 }
             }
-        }      
+        } 
+        
         stage('Integration Tests') {
             steps {
        	        script{
-       	             docker.image('maven:3-alpine').withRun() { c -> 'mvn clean verify'}    
+       	             docker.image('maven:3-alpine'){ c -> sh 'mvn clean verify'}    
        	        }       	                  
             }       
         }
