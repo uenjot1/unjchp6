@@ -31,9 +31,11 @@ pipeline {
 			
 		}
 	    stage('Clean Work Space') {
+	      steps {
 	           cleanWs()
 	           sh 'pwd'
 	           sh 'ls'
+	       }
 	       }
    }
         
