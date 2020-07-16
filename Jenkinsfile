@@ -14,7 +14,6 @@ pipeline {
              post {
                 always {
                     junit 'target/surefire-reports/*.xml' 
-                    junit 'target/filesafe-reports/*.xml' 
                 }
             }
         } 
@@ -29,7 +28,15 @@ pipeline {
 					}
 				}
 			}
+			
 		}
+		 try {
+	       stage('Clean Work Space') {
+	           cleanWs()
+	           sh 'pwd'
+	           sh 'ls'
+	       }
+   }
         
        
     }
