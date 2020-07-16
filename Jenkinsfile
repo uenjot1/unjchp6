@@ -21,8 +21,8 @@ pipeline {
         stage('Run Unit and Integration Tests') {
 			  steps {
 			  	script{
-					docker.image('mysql:5.7').withRun('-e MYSQL_DATABASE=notepad -e MYSQL_ROOT_PASSWORD=root -p 3306:3306') { mysql ->
-						docker.image('maven:3-alpine').inside("--link ${mysql.id}:mysql -e ENV_TEST_MYSQL_HOST=mysql -v /root/.m2:/root/.m2") {
+					docker.image('postgres').withRun('-e POSTGRES_DB=unjchp6_db -e POSTGRES_PASSWORD=user1 -e POSTGRES_USER=user1 -p 5432:5432') { postgres ->
+						docker.image('maven:3-alpine').inside("--link ${postgres.id}:postgres -e ENV_TEST-POSTGRES_HOST=postgres -v /root/.m2:/root/.m2") {
 							sh 'mvn clean verify'
 						}
 					}
