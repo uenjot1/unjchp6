@@ -1,4 +1,4 @@
-package unj.example.unjchp6.authentication;
+package unj.example.authentication;
 
 import java.util.function.Supplier;
 

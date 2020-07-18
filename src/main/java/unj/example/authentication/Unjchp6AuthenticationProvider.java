@@ -1,4 +1,4 @@
-package unj.example.unjchp6.authentication;
+package unj.example.authentication;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;

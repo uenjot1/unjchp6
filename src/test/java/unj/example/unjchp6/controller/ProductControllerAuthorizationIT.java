@@ -18,7 +18,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import unj.example.unjchp6.authentication.Unjchp6AuthenticationProvider;
+import unj.example.authentication.Unjchp6AuthenticationProvider;
 import unj.example.unjchp6.model.Currency;
 import unj.example.unjchp6.model.Product;
 import unj.example.unjchp6.repository.AuthorityRepository;
